@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:attendance_app/components/dialogs.dart';
 import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/constants/images.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
@@ -45,8 +46,20 @@ class _AttendancePageState extends State<AttendancePage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.grey.shade900,
         title: const Text('Attendance Page'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showRetakeConfirmationDialog(context);
+            },
+            icon: const Icon(Icons.refresh),
+          ),
+          const SizedBox(
+            width: 16,
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

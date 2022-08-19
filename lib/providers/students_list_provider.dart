@@ -24,8 +24,8 @@ class StudentListProvider with ChangeNotifier {
   ];
 
   // integers for storing the indices of absentees
-  final List<int> _presentStudents = [];
-  final List<int> _absentStudents = [];
+  List<int> _presentStudents = [];
+  List<int> _absentStudents = [];
 
   int get currentStudent => _currentStudent;
   List<String> get allStudents => _allStudents;
@@ -35,7 +35,6 @@ class StudentListProvider with ChangeNotifier {
   void addToPresentsList() {
     if (currentStudent == allStudents.length - 1) return;
     _presentStudents.add(currentStudent);
-    print(_presentStudents.length);
     _currentStudent++;
     notifyListeners();
   }
@@ -50,8 +49,16 @@ class StudentListProvider with ChangeNotifier {
   String getRollsOfAbsentees() {
     String rollNumbers = '';
     for (int i = 0; i < _absentStudents.length; i++) {
-      rollNumbers += _allStudents[_absentStudents[i]] + ', ';
+      // ignore: use_string_buffers
+      rollNumbers += '${_allStudents[_absentStudents[i]]}, ';
     }
     return rollNumbers;
+  }
+
+  void retakeAttendance() {
+    _currentStudent = 0;
+    _absentStudents = [];
+    _presentStudents = [];
+    notifyListeners();
   }
 }
