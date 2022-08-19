@@ -142,7 +142,6 @@ class _AttendancePageState extends State<AttendancePage> {
                   )
                 else
                   Wrap(
-                    alignment: WrapAlignment.spaceBetween,
                     children: [
                       for (int i = 0;
                           i < listProvider.absentStudents.length;
