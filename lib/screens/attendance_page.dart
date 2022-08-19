@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:attendance_app/components/main_button.dart';
+import 'package:attendance_app/constants/images.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:attendance_app/screens/report_page.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +33,8 @@ class _AttendancePageState extends State<AttendancePage> {
   ];
 
   void generateReport() {
-    report =
-        '${DateTime.now()}\n${Provider.of<StudentListProvider>(context, listen: false).getRollsOfAbsentees()}';
+    report = Provider.of<StudentListProvider>(context, listen: false)
+        .getRollsOfAbsentees();
     Navigator.pushNamed(context, ReportPage.routeName, arguments: report);
   }
 
@@ -41,58 +42,84 @@ class _AttendancePageState extends State<AttendancePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Consumer<StudentListProvider>(
-            builder: (context, listProvider, child) => SingleChildScrollView(
-              physics: const BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  AspectRatio(
-                    aspectRatio: 1.2,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 350),
-                      decoration: BoxDecoration(
-                        color: colors[Random().nextInt(colors.length - 1)],
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Center(
-                        child: Text(
-                          listProvider.allStudents[listProvider.currentStudent],
-                          style: const TextStyle(
-                            fontSize: 35,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
+      appBar: AppBar(
+        backgroundColor: Colors.grey.shade900,
+        title: const Text('Attendance Page'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Consumer<StudentListProvider>(
+          builder: (context, listProvider, child) => SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                AspectRatio(
+                  aspectRatio: 1.2,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 350),
+                    decoration: BoxDecoration(
+                      color: colors[Random().nextInt(colors.length - 1)],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        listProvider.allStudents[listProvider.currentStudent],
+                        style: const TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
                         ),
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  if (listProvider.currentStudent ==
-                      listProvider.allStudents.length - 1)
-                    MainButton(
-                      buttonText: 'Generate Report',
-                      onPressed: generateReport,
-                      buttonColor: Colors.amberAccent.shade100,
-                    )
-                  else
-                    const OptionButtons(),
-                  const Divider(
-                    height: 32,
-                    color: Colors.white,
-                  ),
-                  const Text(
-                    'Absentees',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
+                ),
+                const SizedBox(
+                  height: 24,
+                ),
+                if (listProvider.currentStudent ==
+                    listProvider.allStudents.length - 1)
+                  MainButton(
+                    buttonText: 'Generate Report',
+                    onPressed: generateReport,
+                    buttonColor: Colors.amberAccent.shade100,
+                  )
+                else
+                  const OptionButtons(),
+                const Divider(
+                  height: 32,
+                  color: Colors.white,
+                ),
+                const Text(
+                  'Absentees',
+                  style: TextStyle(color: Colors.white),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                if (listProvider.absentStudents.isEmpty)
+                  Center(
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        Image.asset(
+                          Images.smiley,
+                          width: 60,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        const Text(
+                          'No Absentess so far!',
+                          style: TextStyle(color: Colors.white60),
+                        )
+                      ],
+                    ),
+                  )
+                else
                   Wrap(
+                    alignment: WrapAlignment.spaceBetween,
                     children: [
                       for (int i = 0;
                           i < listProvider.absentStudents.length;
@@ -116,8 +143,7 @@ class _AttendancePageState extends State<AttendancePage> {
                         ),
                     ],
                   )
-                ],
-              ),
+              ],
             ),
           ),
         ),

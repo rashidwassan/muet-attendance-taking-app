@@ -1,6 +1,7 @@
 import 'package:attendance_app/components/main_button.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ReportPage extends StatefulWidget {
   static const String routeName = '/report-page';
@@ -11,12 +12,17 @@ class ReportPage extends StatefulWidget {
 }
 
 class _ReportPageState extends State<ReportPage> {
-  String header = '19SW-1\n';
   @override
   Widget build(BuildContext context) {
+    String header = '19SW-1\n';
+    String date = DateFormat.yMMMEd().format(DateTime.now());
     final String report = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        backgroundColor: Colors.grey.shade800,
+        title: const Text('Attendance Report'),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -31,18 +37,30 @@ class _ReportPageState extends State<ReportPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Center(
-                    child: SelectableText.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: header + report,
-                            style: const TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
+                    child: Column(
+                      children: [
+                        Text(
+                          header,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white70,
                           ),
-                        ],
-                      ),
+                        ),
+                        SelectableText.rich(
+                          TextSpan(
+                            children: [
+                              TextSpan(
+                                text: report,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

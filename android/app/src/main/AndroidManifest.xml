@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.attendance_app">
    <application
-        android:label="CRs Companion"
+        android:label="CRs Buddy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
