@@ -1,7 +1,10 @@
 import 'package:attendance_app/components/main_button.dart';
+import 'package:attendance_app/constants/images.dart';
+import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class ReportPage extends StatefulWidget {
   static const String routeName = '/report-page';
@@ -14,11 +17,13 @@ class ReportPage extends StatefulWidget {
 class _ReportPageState extends State<ReportPage> {
   @override
   Widget build(BuildContext context) {
-    String header = '19SW-1\n';
-    String date = DateFormat.yMMMEd().format(DateTime.now());
+    final int absenteeCount =
+        Provider.of<StudentListProvider>(context).absentStudents.length;
+    const String header = '19SW-1';
+    final String date = DateFormat.yMMMEd().format(DateTime.now());
     final String report = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
         backgroundColor: Colors.grey.shade800,
         title: const Text('Attendance Report'),
@@ -29,6 +34,22 @@ class _ReportPageState extends State<ReportPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset(
+                (absenteeCount == 0) ? Images.smiley : Images.disappointed,
+                width: 100,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Text(
+                (absenteeCount == 0)
+                    ? 'All Students Present!'
+                    : '$absenteeCount students absent today!',
+                style: const TextStyle(color: Colors.white70),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
               DecoratedBox(
                 decoration: BoxDecoration(
                   color: Colors.grey.shade800,
@@ -39,13 +60,27 @@ class _ReportPageState extends State<ReportPage> {
                   child: Center(
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           header,
-                          style: const TextStyle(
-                            fontSize: 20,
+                          style: TextStyle(
+                            fontSize: 22,
                             fontWeight: FontWeight.bold,
                             color: Colors.white70,
                           ),
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        Text(
+                          date,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white70,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 16,
                         ),
                         SelectableText.rich(
                           TextSpan(
@@ -71,7 +106,7 @@ class _ReportPageState extends State<ReportPage> {
               SizedBox(
                 height: 50,
                 child: MainButton(
-                  buttonText: 'COPY',
+                  buttonText: 'Copy Text',
                   onPressed: () {
                     FlutterClipboard.copy(report).then(
                       (value) => ScaffoldMessenger.of(context).showSnackBar(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class StudentListProvider with ChangeNotifier {
   int _currentStudent = 0;
   final List<String> _allStudents = [
-    '19SW01',
+    'F16 - 19SWBC1101',
     '19SW03',
     '19SW07',
     '19SW11',
