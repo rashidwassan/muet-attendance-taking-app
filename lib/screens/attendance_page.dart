@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AttendancePage extends StatefulWidget {
   static const String routeName = '/attendance-page';
-  const AttendancePage({Key? key}) : super(key: key);
+  const AttendancePage({super.key});
 
   @override
   State<AttendancePage> createState() => _AttendancePageState();
@@ -26,6 +26,12 @@ class _AttendancePageState extends State<AttendancePage>
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [Container()],
+        ),
+      ),
+    );
   }
 }
