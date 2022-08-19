@@ -1,3 +1,4 @@
+import 'package:attendance_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class MUETAttendanceApp extends StatelessWidget {
@@ -11,7 +12,10 @@ class MUETAttendanceApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      routes: {},
+      initialRoute: SplashScreen.routeName,
+      routes: {
+        SplashScreen.routeName: (context) => const SplashScreen(),
+      },
     );
   }
 }
