@@ -1,5 +1,6 @@
 import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:attendance_app/screens/attendance_page.dart';
+import 'package:attendance_app/screens/report_page.dart';
 import 'package:attendance_app/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,6 +22,7 @@ class MUETAttendanceApp extends StatelessWidget {
         routes: {
           SplashScreen.routeName: (context) => const SplashScreen(),
           AttendancePage.routeName: (context) => const AttendancePage(),
+          ReportPage.routeName: (context) => const ReportPage(),
         },
       ),
     );

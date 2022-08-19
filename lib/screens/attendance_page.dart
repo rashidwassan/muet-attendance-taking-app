@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
+import 'package:attendance_app/screens/report_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,10 +16,8 @@ class AttendancePage extends StatefulWidget {
   State<AttendancePage> createState() => _AttendancePageState();
 }
 
-class _AttendancePageState extends State<AttendancePage>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
+class _AttendancePageState extends State<AttendancePage> {
+  late String report;
   List<Color> colors = [
     Colors.red.shade100,
     Colors.blue.shade100,
@@ -32,20 +31,10 @@ class _AttendancePageState extends State<AttendancePage>
     Colors.teal.shade100,
   ];
 
-  String generateReport() {
-    return 'hello!';
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
+  void generateReport() {
+    report =
+        '${DateTime.now()}\n${Provider.of<StudentListProvider>(context, listen: false).getRollsOfAbsentees()}';
+    Navigator.pushNamed(context, ReportPage.routeName, arguments: report);
   }
 
   @override

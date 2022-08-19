@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushNamed(context, AttendancePage.routeName);
+      Navigator.pushReplacementNamed(context, AttendancePage.routeName);
     });
   }
 
@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
             children: [
               TweenAnimationBuilder(
                 curve: Curves.bounceInOut,
-                duration: const Duration(milliseconds: 700),
+                duration: const Duration(milliseconds: 800),
                 tween: Tween<double>(
                   begin: 0.01,
                   end: 0.45,
@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       BoxShadow(
                           color: Colors.black26,
                           spreadRadius: 1,
-                          blurRadius: 8,
+                          blurRadius: 4,
                           offset: Offset(4, 4))
                     ],
                   ),

@@ -46,4 +46,12 @@ class StudentListProvider with ChangeNotifier {
     _currentStudent++;
     notifyListeners();
   }
+
+  String getRollsOfAbsentees() {
+    String rollNumbers = '';
+    for (int i = 0; i < _absentStudents.length; i++) {
+      rollNumbers += _allStudents[_absentStudents[i]] + ', ';
+    }
+    return rollNumbers;
+  }
 }
