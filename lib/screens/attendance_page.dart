@@ -121,7 +121,7 @@ class _AttendancePageState extends State<AttendancePage> {
                               },
                               child: AnimatedContainer(
                                 duration: const Duration(milliseconds: 300),
-                                height: 40,
+                                height: 45,
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                   color: listProvider.ifGetAbsenteesList
@@ -131,7 +131,7 @@ class _AttendancePageState extends State<AttendancePage> {
                                 ),
                                 child: const Center(
                                   child: Text(
-                                    'Available Students',
+                                    'PRESENT Students',
                                     style: TextStyle(color: Colors.black87),
                                   ),
                                 ),
@@ -139,7 +139,7 @@ class _AttendancePageState extends State<AttendancePage> {
                             ),
                           ),
                           const SizedBox(
-                            width: 24,
+                            width: 16,
                           ),
                           Flexible(
                             child: GestureDetector(
@@ -148,7 +148,7 @@ class _AttendancePageState extends State<AttendancePage> {
                               },
                               child: AnimatedContainer(
                                 duration: const Duration(milliseconds: 300),
-                                height: 40,
+                                height: 45,
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                     color: !listProvider.ifGetAbsenteesList
@@ -157,7 +157,7 @@ class _AttendancePageState extends State<AttendancePage> {
                                     borderRadius: BorderRadius.circular(8)),
                                 child: const Center(
                                   child: Text(
-                                    'Unavailable Students',
+                                    'ABSENT Students',
                                     style: TextStyle(color: Colors.black87),
                                   ),
                                 ),
@@ -171,7 +171,7 @@ class _AttendancePageState extends State<AttendancePage> {
                 else
                   const OptionButtons(),
                 const Divider(
-                  height: 48,
+                  height: 32,
                   color: Colors.white,
                 ),
                 DesiredStudentRollNumbersDisplay(colors),

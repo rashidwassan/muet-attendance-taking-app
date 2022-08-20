@@ -100,7 +100,25 @@ class _ReportPageState extends State<ReportPage> {
                                 ),
                               ),
                               const SizedBox(
-                                height: 16,
+                                height: 12,
+                              ),
+                              Text(
+                                Provider.of<StudentListProvider>(context)
+                                        .ifGetAbsenteesList
+                                    ? 'LIST OF ABSENT STUDENTS'
+                                    : 'LIST OF PRESENT STUDENTS',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  color:
+                                      Provider.of<StudentListProvider>(context)
+                                              .ifGetAbsenteesList
+                                          ? Colors.red.shade400
+                                          : Colors.green,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 4,
                               ),
                               SelectableText.rich(
                                 TextSpan(
