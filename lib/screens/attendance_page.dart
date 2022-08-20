@@ -6,6 +6,7 @@ import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/components/present_absent_buttons.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:attendance_app/screens/report_page.dart';
+import 'package:attendance_app/screens/students_record_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -53,11 +54,19 @@ class _AttendancePageState extends State<AttendancePage> {
             onPressed: () {
               showRetakeConfirmationDialog(context);
             },
+            tooltip: 'Retake Attendance',
             icon: const Icon(Icons.refresh),
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, StudentsRecordPage.routeName);
+            },
+            tooltip: 'Student Record',
+            icon: const Icon(Icons.book),
           ),
           const SizedBox(
             width: 16,
-          )
+          ),
         ],
       ),
       body: Padding(

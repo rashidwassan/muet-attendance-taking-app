@@ -2,6 +2,7 @@ import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:attendance_app/screens/attendance_page.dart';
 import 'package:attendance_app/screens/report_page.dart';
 import 'package:attendance_app/screens/splash_screen.dart';
+import 'package:attendance_app/screens/students_record_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,7 @@ class MUETAttendanceApp extends StatelessWidget {
           SplashScreen.routeName: (context) => const SplashScreen(),
           AttendancePage.routeName: (context) => const AttendancePage(),
           ReportPage.routeName: (context) => const ReportPage(),
+          StudentsRecordPage.routeName: (context) => const StudentsRecordPage(),
         },
       ),
     );
