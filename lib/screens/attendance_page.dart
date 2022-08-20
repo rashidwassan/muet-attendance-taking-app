@@ -2,13 +2,13 @@ import 'dart:math';
 
 import 'package:attendance_app/components/dialogs.dart';
 import 'package:attendance_app/components/main_button.dart';
-import 'package:attendance_app/constants/images.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:attendance_app/screens/report_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../components/desired_student_wrap.dart';
 import '../components/present_absent_buttons.dart';
 
 class AttendancePage extends StatefulWidget {
@@ -21,7 +21,6 @@ class AttendancePage extends StatefulWidget {
 
 class _AttendancePageState extends State<AttendancePage> {
   late String report;
-  bool generateAbsenteesReport = true;
   List<Color> colors = [
     Colors.red.shade100,
     Colors.blue.shade100,
@@ -37,7 +36,7 @@ class _AttendancePageState extends State<AttendancePage> {
 
   void generateReport() {
     report = Provider.of<StudentListProvider>(context, listen: false)
-        .getRollsOfAbsentees();
+        .getRollsFromDesiredList();
     Navigator.pushNamed(context, ReportPage.routeName, arguments: report);
   }
 
@@ -46,6 +45,7 @@ class _AttendancePageState extends State<AttendancePage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
+        elevation: 1,
         centerTitle: true,
         backgroundColor: Colors.grey.shade900,
         title: const Text('Attendance Page'),
@@ -104,6 +104,68 @@ class _AttendancePageState extends State<AttendancePage> {
                         onPressed: generateReport,
                         buttonColor: Colors.amberAccent.shade100,
                       ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const Text('Please select the list to be generated:'),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Flexible(
+                            child: GestureDetector(
+                              onTap: () {
+                                listProvider.ifGetAbsenteesList = false;
+                              },
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
+                                height: 40,
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: listProvider.ifGetAbsenteesList
+                                      ? Colors.grey
+                                      : Colors.green.shade300,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    'Available Students',
+                                    style: TextStyle(color: Colors.black87),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 24,
+                          ),
+                          Flexible(
+                            child: GestureDetector(
+                              onTap: () {
+                                listProvider.ifGetAbsenteesList = true;
+                              },
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 300),
+                                height: 40,
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                    color: !listProvider.ifGetAbsenteesList
+                                        ? Colors.grey
+                                        : Colors.green.shade300,
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: const Center(
+                                  child: Text(
+                                    'Unavailable Students',
+                                    style: TextStyle(color: Colors.black87),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   )
                 else
@@ -112,63 +174,7 @@ class _AttendancePageState extends State<AttendancePage> {
                   height: 48,
                   color: Colors.white,
                 ),
-                const Text(
-                  'Absent Students',
-                  style: TextStyle(color: Colors.white, fontSize: 16),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                if (listProvider.absentStudents.isEmpty)
-                  Center(
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        Image.asset(
-                          Images.smiley,
-                          width: 60,
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        const Text(
-                          'No Absentees so far!',
-                          style: TextStyle(color: Colors.white60),
-                        )
-                      ],
-                    ),
-                  )
-                else
-                  Wrap(
-                    children: [
-                      for (int i = 0;
-                          i < listProvider.absentStudents.length;
-                          i++)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                          child: Chip(
-                            onDeleted: () {},
-                            deleteIcon: Icon(
-                              Icons.delete,
-                              size: 19,
-                              color: Colors.red.shade400,
-                            ),
-                            backgroundColor:
-                                colors[Random().nextInt(colors.length - 1)],
-                            label: Text(
-                              listProvider
-                                  .allStudents[listProvider.absentStudents[i]],
-                              style: const TextStyle(
-                                color: Colors.black87,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ),
-                    ],
-                  )
+                DesiredStudentRollNumbersDisplay(colors),
               ],
             ),
           ),

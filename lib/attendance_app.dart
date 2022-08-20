@@ -18,6 +18,7 @@ class MUETAttendanceApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          brightness: Brightness.dark,
           fontFamily: GoogleFonts.roboto().fontFamily,
         ),
         initialRoute: SplashScreen.routeName,

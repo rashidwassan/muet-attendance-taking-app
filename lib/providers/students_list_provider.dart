@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class StudentListProvider with ChangeNotifier {
   int _currentStudent = 0;
+  bool _ifGetAbsenteesList = true;
   final List<String> _allStudents = [
-    'F16 - 19SWBC1101',
+    'F16 - 19SSW11',
     '19SW03',
     '19SW07',
     '19SW11',
@@ -46,11 +47,13 @@ class StudentListProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  String getRollsOfAbsentees() {
+  String getRollsFromDesiredList() {
+    final List<int> desiredList =
+        _ifGetAbsenteesList ? _absentStudents : _presentStudents;
     String rollNumbers = '';
-    for (int i = 0; i < _absentStudents.length; i++) {
+    for (int i = 0; i < desiredList.length; i++) {
       // ignore: use_string_buffers
-      rollNumbers += '${_allStudents[_absentStudents[i]]}, ';
+      rollNumbers += '${_allStudents[desiredList[i]]}, ';
     }
     return rollNumbers;
   }
@@ -59,6 +62,13 @@ class StudentListProvider with ChangeNotifier {
     _currentStudent = 0;
     _absentStudents = [];
     _presentStudents = [];
+    notifyListeners();
+  }
+
+  bool get ifGetAbsenteesList => _ifGetAbsenteesList;
+
+  set ifGetAbsenteesList(bool newVal) {
+    _ifGetAbsenteesList = newVal;
     notifyListeners();
   }
 }
