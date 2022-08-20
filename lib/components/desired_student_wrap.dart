@@ -1,14 +1,14 @@
 import 'dart:math';
 
 import 'package:attendance_app/constants/images.dart';
+import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../providers/students_list_provider.dart';
 
 class DesiredStudentRollNumbersDisplay extends StatelessWidget {
   const DesiredStudentRollNumbersDisplay(this.colors, {super.key});
   final List<Color> colors;
+
   @override
   Widget build(BuildContext context) {
     return Consumer<StudentListProvider>(
@@ -47,7 +47,7 @@ class DesiredStudentRollNumbersDisplay extends StatelessWidget {
           else
             Wrap(
               children: [
-                for (int i = 0; i < listProvider.absentStudents.length; i++)
+                for (int i = 0; i < listProvider.desiredStudents.length; i++)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child: Chip(
@@ -61,7 +61,7 @@ class DesiredStudentRollNumbersDisplay extends StatelessWidget {
                           colors[Random().nextInt(colors.length - 1)],
                       label: Text(
                         listProvider
-                            .allStudents[listProvider.absentStudents[i]],
+                            .allStudents[listProvider.desiredStudents[i]],
                         style: const TextStyle(
                           color: Colors.black87,
                           fontWeight: FontWeight.w500,

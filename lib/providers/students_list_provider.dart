@@ -33,6 +33,9 @@ class StudentListProvider with ChangeNotifier {
   List<int> get presentStudents => _presentStudents;
   List<int> get absentStudents => _absentStudents;
 
+  List<int> get desiredStudents =>
+      _ifGetAbsenteesList ? _absentStudents : _presentStudents;
+
   void addToPresentsList() {
     if (currentStudent == allStudents.length - 1) return;
     _presentStudents.add(currentStudent);
