@@ -22,6 +22,7 @@ class StudentListProvider with ChangeNotifier {
     '19SW103',
     '19SW105',
     '19SW107',
+    'All Done!'
   ];
 
   // integers for storing the indices of absentees

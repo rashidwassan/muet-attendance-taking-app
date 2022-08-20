@@ -119,7 +119,7 @@ class _AttendancePageState extends State<AttendancePage> {
                                 listProvider.ifGetAbsenteesList = false;
                               },
                               child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 250),
                                 height: 45,
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
@@ -146,14 +146,15 @@ class _AttendancePageState extends State<AttendancePage> {
                                 listProvider.ifGetAbsenteesList = true;
                               },
                               child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 300),
+                                duration: const Duration(milliseconds: 250),
                                 height: 45,
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
-                                    color: !listProvider.ifGetAbsenteesList
-                                        ? Colors.grey
-                                        : Colors.green.shade300,
-                                    borderRadius: BorderRadius.circular(8)),
+                                  color: !listProvider.ifGetAbsenteesList
+                                      ? Colors.grey
+                                      : Colors.green.shade300,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
                                 child: const Center(
                                   child: Text(
                                     'ABSENT Students',
