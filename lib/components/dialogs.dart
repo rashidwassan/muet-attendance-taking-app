@@ -30,6 +30,7 @@ dynamic showRetakeConfirmationDialog(BuildContext context) {
                           'Are you sure you want to reset the progress? All current data will be lost.',
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                            color: Colors.black87,
                             fontSize: 22,
                           ),
                         ),

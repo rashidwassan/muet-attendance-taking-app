@@ -1,15 +1,14 @@
 import 'dart:math';
 
+import 'package:attendance_app/components/desired_student_wrap.dart';
 import 'package:attendance_app/components/dialogs.dart';
 import 'package:attendance_app/components/main_button.dart';
+import 'package:attendance_app/components/present_absent_buttons.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:attendance_app/screens/report_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
-import '../components/desired_student_wrap.dart';
-import '../components/present_absent_buttons.dart';
 
 class AttendancePage extends StatefulWidget {
   static const String routeName = '/attendance-page';
