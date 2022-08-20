@@ -39,6 +39,7 @@ class Utils {
         ),
       ),
     );
+    Share.share(textToBeCopied);
     return textToBeCopied;
   }
 

@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/constants/images.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
@@ -18,8 +16,6 @@ class ReportPage extends StatefulWidget {
 }
 
 class _ReportPageState extends State<ReportPage> {
-  late Uint8List _imageFile;
-
   //Create an instance of ScreenshotController
   ScreenshotController screenshotController = ScreenshotController();
 
@@ -29,6 +25,7 @@ class _ReportPageState extends State<ReportPage> {
         Provider.of<StudentListProvider>(context).absentStudents.length;
     const String header = '19SW-1';
     final String date = DateFormat.yMMMEd().format(DateTime.now());
+    // ignore: cast_nullable_to_non_nullable
     final String report = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
