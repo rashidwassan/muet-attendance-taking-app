@@ -124,7 +124,7 @@ class _AttendancePageState extends State<AttendancePage> {
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                   color: listProvider.ifGetAbsenteesList
-                                      ? Colors.grey
+                                      ? Colors.white38
                                       : Colors.green.shade300,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -151,7 +151,7 @@ class _AttendancePageState extends State<AttendancePage> {
                                 padding: const EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                   color: !listProvider.ifGetAbsenteesList
-                                      ? Colors.grey
+                                      ? Colors.white38
                                       : Colors.green.shade300,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
