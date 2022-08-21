@@ -6,11 +6,13 @@ class MainButton extends StatelessWidget {
     required this.buttonText,
     required this.onPressed,
     required this.buttonColor,
+    this.textColor = Colors.black87,
   });
 
   final String buttonText;
   final Function() onPressed;
   final Color buttonColor;
+  final Color textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class MainButton extends StatelessWidget {
           buttonText,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Colors.black.withAlpha(170),
+            color: textColor,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),

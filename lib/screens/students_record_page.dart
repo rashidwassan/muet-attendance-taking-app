@@ -20,10 +20,14 @@ class _StudentsRecordPageState extends State<StudentsRecordPage> {
       body: Padding(
         padding: const EdgeInsets.all(24.0),
         child: Column(children: [
-          MainButton(
-            buttonText: '+ ADD Student',
-            onPressed: () {},
-            buttonColor: Colors.green.withAlpha(100),
+          SizedBox(
+            height: 50,
+            child: MainButton(
+              buttonText: '+ ADD Student',
+              textColor: Colors.white,
+              onPressed: () {},
+              buttonColor: Colors.green.shade400,
+            ),
           ),
         ]),
       ),
