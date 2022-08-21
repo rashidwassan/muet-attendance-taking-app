@@ -1,4 +1,5 @@
 import 'package:attendance_app/providers/students_list_provider.dart';
+import 'package:attendance_app/providers/user_data_provider.dart';
 import 'package:attendance_app/screens/attendance_page.dart';
 import 'package:attendance_app/screens/batch_section_input_page.dart';
 import 'package:attendance_app/screens/report_page.dart';
@@ -13,10 +14,14 @@ class MUETAttendanceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => StudentListProvider(),
+    return MultiProvider(
+      providers: [
+        ListenableProvider<StudentListProvider>(
+            create: (_) => StudentListProvider()),
+        ListenableProvider<UserDataProvider>(create: (_) => UserDataProvider()),
+      ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Attendance App',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,

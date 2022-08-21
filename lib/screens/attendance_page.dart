@@ -5,6 +5,7 @@ import 'package:attendance_app/components/dialogs.dart';
 import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/components/present_absent_buttons.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
+import 'package:attendance_app/providers/user_data_provider.dart';
 import 'package:attendance_app/screens/report_page.dart';
 import 'package:attendance_app/screens/students_record_page.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,9 @@ class _AttendancePageState extends State<AttendancePage> {
     Navigator.pushNamed(context, ReportPage.routeName, arguments: report);
   }
 
+  late List<String> userInfo =
+      Provider.of<UserDataProvider>(context, listen: false).userData ?? [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +52,7 @@ class _AttendancePageState extends State<AttendancePage> {
         elevation: 1,
         centerTitle: true,
         backgroundColor: Colors.grey.shade900,
-        title: const Text('Attendance Page'),
+        title: Text(userInfo[0]),
         actions: [
           IconButton(
             onPressed: () {

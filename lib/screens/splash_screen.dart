@@ -1,7 +1,9 @@
 import 'package:attendance_app/db/prefs.dart';
+import 'package:attendance_app/providers/user_data_provider.dart';
 import 'package:attendance_app/screens/attendance_page.dart';
 import 'package:attendance_app/screens/batch_section_input_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = '/splash';
@@ -15,10 +17,15 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-
+    loadUserData();
     Future.delayed(const Duration(seconds: 2), () {
       navigate();
     });
+  }
+
+  void loadUserData() async {
+    Provider.of<UserDataProvider>(context, listen: false).userData =
+        await PrefsDBService.getUserInfo();
   }
 
   void navigate() async {
