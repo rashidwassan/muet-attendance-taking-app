@@ -8,6 +8,8 @@ class AttendanceAppTextField extends StatelessWidget {
     required this.label,
     required this.title,
     required this.onChanged,
+    required this.onSubmitted,
+    this.focusNode,
     this.textInputType = TextInputType.text,
   }) : _batchCodeController = batchCodeController;
 
@@ -15,8 +17,10 @@ class AttendanceAppTextField extends StatelessWidget {
   final String label;
   final String hintText;
   final String title;
+  final FocusNode? focusNode;
   final TextInputType textInputType;
   final Function(String val) onChanged;
+  final Function(String val) onSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +35,19 @@ class AttendanceAppTextField extends StatelessWidget {
           height: 12,
         ),
         TextFormField(
+          focusNode: focusNode,
           controller: _batchCodeController,
           keyboardType: textInputType,
           onChanged: onChanged,
+          onFieldSubmitted: onSubmitted,
+          validator: (value) {
+            if (value!.isEmpty) return 'Fields cannot be empty!';
+          },
           decoration: InputDecoration(
-            label: Text(label),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+            // label: Text(label),
             hintText: hintText,
-            hintStyle: TextStyle(color: Colors.red.shade300),
+            hintStyle: const TextStyle(color: Colors.white38),
             labelStyle: TextStyle(color: Colors.amber.shade100),
             border: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.teal.shade100, width: 0.5),
@@ -45,6 +55,10 @@ class AttendanceAppTextField extends StatelessWidget {
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.teal.shade400, width: 0.5),
             ),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.red.shade300, width: 0.5),
+            ),
+            errorStyle: TextStyle(color: Colors.redAccent.shade200),
           ),
         ),
       ],

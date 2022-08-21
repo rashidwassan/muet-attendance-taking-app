@@ -4,13 +4,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PrefsDBService {
   static Future<bool> isFirstRun() async {
     final prefs = await SharedPreferences.getInstance();
-    final String? action = prefs.getString('username');
+    final String? action = prefs.getString('name');
     return action == null;
   }
 
-  static Future<bool> saveData() async {
+  static saveCRData({
+    required String name,
+    required String batchCode,
+    required String deptCode,
+    required String section,
+  }) async {
     final prefs = await SharedPreferences.getInstance();
-    final String? action = prefs.getString('username');
-    return action == null;
+    prefs.setString('name', name);
+    prefs.setString('batchCode', batchCode);
+    prefs.setString('departmentCode', deptCode);
+    prefs.setString('section', section);
   }
 }
