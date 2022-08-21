@@ -78,7 +78,7 @@ class StudentListProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  addItem(Student student) async {
+  saveStudentDataToDB(Student student) async {
     var box = await Hive.openBox<Student>('studentsRecord');
     box.add(student);
     notifyListeners();

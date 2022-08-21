@@ -1,5 +1,6 @@
 import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/components/textfields.dart';
+import 'package:attendance_app/models/student.dart';
 import 'package:attendance_app/providers/user_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -78,7 +79,7 @@ dynamic showStudentDataInputDialog(
     builder: (context) {
       // importing _userData to extract batch and department code.
       final List<String> userData =
-          Provider.of<UserDataProvider>(context).userData ?? [];
+          Provider.of<UserDataProvider>(context, listen: false).userData ?? [];
       final TextEditingController studentNameController =
           TextEditingController();
       final TextEditingController rollNumberController =
@@ -152,7 +153,25 @@ dynamic showStudentDataInputDialog(
                         buttonText: 'ADD',
                         textColor: Colors.white,
                         onPressed: () {
-                          formKey.currentState!.validate();
+                          if (formKey.currentState!.validate()) {
+                            final Student newStudent = Student(
+                              name: studentNameController.text,
+                              rollNumber: rollNumberController.text,
+                            );
+                            Provider.of<StudentListProvider>(
+                              context,
+                              listen: false,
+                            ).saveStudentDataToDB(newStudent);
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  '${studentNameController.text} (${rollNumberController.text}) was added to the database.',
+                                ),
+                              ),
+                            );
+                            Navigator.pop(context);
+                          }
                         },
                         buttonColor: Colors.red.shade200,
                       ),
