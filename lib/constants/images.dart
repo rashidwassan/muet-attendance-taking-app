@@ -6,4 +6,5 @@ class Images {
   static const String disappointed = 'assets/images/disappointed.png';
   static const String sad = 'assets/images/sad.png';
   static const String smiley = 'assets/images/smiley.png';
+  static const String welcome = 'assets/images/welcome.png';
 }

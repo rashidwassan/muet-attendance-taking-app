@@ -1,5 +1,6 @@
 import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:attendance_app/screens/attendance_page.dart';
+import 'package:attendance_app/screens/batch_section_input_page.dart';
 import 'package:attendance_app/screens/report_page.dart';
 import 'package:attendance_app/screens/splash_screen.dart';
 import 'package:attendance_app/screens/students_record_page.dart';
@@ -28,6 +29,8 @@ class MUETAttendanceApp extends StatelessWidget {
           AttendancePage.routeName: (context) => const AttendancePage(),
           ReportPage.routeName: (context) => const ReportPage(),
           StudentsRecordPage.routeName: (context) => const StudentsRecordPage(),
+          BatchAndSectionSpecificationScreen.routeName: (context) =>
+              const BatchAndSectionSpecificationScreen(),
         },
       ),
     );

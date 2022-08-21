@@ -1,6 +1,7 @@
+import 'package:attendance_app/db/prefs.dart';
 import 'package:attendance_app/screens/attendance_page.dart';
+import 'package:attendance_app/screens/batch_section_input_page.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = '/splash';
@@ -16,14 +17,17 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, AttendancePage.routeName);
+      navigate();
     });
   }
 
-  Future<bool> checkForFirstRun() async {
-    final prefs = await SharedPreferences.getInstance();
-    final String? action = prefs.getString('username');
-    return action == null;
+  void navigate() async {
+    if (await PrefsDBService.isFirstRun()) {
+      Navigator.pushReplacementNamed(
+          context, BatchAndSectionSpecificationScreen.routeName);
+    } else {
+      Navigator.pushReplacementNamed(context, AttendancePage.routeName);
+    }
   }
 
   @override
@@ -32,11 +36,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
     return Scaffold(
       body: DecoratedBox(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [Colors.teal, Colors.green, Colors.blue],
+            colors: [
+              Colors.pink.shade100,
+              Colors.black38,
+              Colors.blue.shade300
+            ],
           ),
         ),
         child: Center(
