@@ -51,12 +51,12 @@ class DesiredStudentRollNumbersDisplay extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child: Chip(
-                      onDeleted: () {},
-                      deleteIcon: Icon(
-                        Icons.delete,
-                        size: 19,
-                        color: Colors.red.shade400,
-                      ),
+                      // onDeleted: () {},
+                      // deleteIcon: Icon(
+                      //   Icons.delete,
+                      //   size: 19,
+                      //   color: Colors.red.shade400,
+                      // ),
                       backgroundColor:
                           colors[Random().nextInt(colors.length - 1)],
                       label: Text(

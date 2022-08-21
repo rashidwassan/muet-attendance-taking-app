@@ -44,7 +44,8 @@ class Utils {
   }
 
   static takeAndShareScreenshot(
-      ScreenshotController screenshotController) async {
+    ScreenshotController screenshotController,
+  ) async {
     await screenshotController
         .capture(delay: const Duration(milliseconds: 10))
         .then((Uint8List? image) async {
