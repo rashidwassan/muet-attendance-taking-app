@@ -92,7 +92,8 @@ class _AttendancePageState extends State<AttendancePage> {
                       padding: const EdgeInsets.all(16.0),
                       child: Center(
                         child: Text(
-                          listProvider.allStudents[listProvider.currentStudent],
+                          listProvider.allStudents[listProvider.currentStudent]
+                              .rollNumber,
                           style: TextStyle(
                             fontSize: 55,
                             fontFamily: GoogleFonts.concertOne().fontFamily,

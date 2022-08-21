@@ -5,34 +5,14 @@ import 'package:hive/hive.dart';
 class StudentListProvider with ChangeNotifier {
   int _currentStudent = 0;
   bool _ifGetAbsenteesList = true;
-  final List<String> _allStudents = [
-    'F16 - 19SSW11',
-    '19SW03',
-    '19SW07',
-    '19SW11',
-    '19SW13',
-    '19SW17',
-    '19SW19',
-    '19SW25',
-    '19SW27',
-    '19SW33',
-    '19SW45',
-    '19SW55',
-    '19SW57',
-    '19SW59',
-    '19SW101',
-    '19SW103',
-    '19SW105',
-    '19SW107',
-    'All Done!'
-  ];
+  List<Student> _allStudents = [];
 
   // integers for storing the indices of absentees
   List<int> _presentStudents = [];
   List<int> _absentStudents = [];
 
   int get currentStudent => _currentStudent;
-  List<String> get allStudents => _allStudents;
+  List<Student> get allStudents => _allStudents;
   List<int> get presentStudents => _presentStudents;
   List<int> get absentStudents => _absentStudents;
 
@@ -59,7 +39,7 @@ class StudentListProvider with ChangeNotifier {
     String rollNumbers = '';
     for (int i = 0; i < desiredList.length; i++) {
       // ignore: use_string_buffers
-      rollNumbers += '${_allStudents[desiredList[i]]}, ';
+      rollNumbers += '${_allStudents[desiredList[i]].rollNumber}, ';
     }
     return rollNumbers;
   }
@@ -81,6 +61,14 @@ class StudentListProvider with ChangeNotifier {
   saveStudentDataToDB(Student student) async {
     var box = await Hive.openBox<Student>('studentsRecord');
     box.add(student);
+    notifyListeners();
+  }
+
+  loadStudentRecord() async {
+    final box = await Hive.openBox<Student>('studentsRecord');
+
+    _allStudents = box.values.toList();
+
     notifyListeners();
   }
 }

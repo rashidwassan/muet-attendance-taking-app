@@ -61,7 +61,8 @@ class DesiredStudentRollNumbersDisplay extends StatelessWidget {
                           colors[Random().nextInt(colors.length - 1)],
                       label: Text(
                         listProvider
-                            .allStudents[listProvider.desiredStudents[i]],
+                            .allStudents[listProvider.desiredStudents[i]]
+                            .rollNumber,
                         style: const TextStyle(
                           color: Colors.black87,
                           fontWeight: FontWeight.w500,
