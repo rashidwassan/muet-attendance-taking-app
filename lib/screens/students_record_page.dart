@@ -1,3 +1,4 @@
+import 'package:attendance_app/components/dialogs.dart';
 import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/constants/images.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,9 @@ class _StudentsRecordPageState extends State<StudentsRecordPage> {
         actions: [
           IconButton(
             tooltip: 'Add New Student',
-            onPressed: () {},
+            onPressed: () {
+              showStudentDataInputDialog(context);
+            },
             icon: const Icon(Icons.add),
           ),
         ],
@@ -43,7 +46,9 @@ class _StudentsRecordPageState extends State<StudentsRecordPage> {
               child: MainButton(
                 buttonText: '+ ADD Student',
                 textColor: Colors.white,
-                onPressed: () {},
+                onPressed: () {
+                  showStudentDataInputDialog(context);
+                },
                 buttonColor: Colors.green.shade400,
               ),
             ),
