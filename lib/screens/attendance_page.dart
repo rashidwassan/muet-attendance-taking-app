@@ -52,7 +52,7 @@ class _AttendancePageState extends State<AttendancePage> {
         elevation: 1,
         centerTitle: true,
         backgroundColor: Colors.grey.shade900,
-        title: Text(userInfo[0]),
+        title: Text('${userInfo[1]}${userInfo[2]} - ${userInfo[3]}'),
         actions: [
           IconButton(
             onPressed: () {

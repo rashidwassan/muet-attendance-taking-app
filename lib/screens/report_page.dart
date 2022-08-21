@@ -1,6 +1,7 @@
 import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/constants/images.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
+import 'package:attendance_app/providers/user_data_provider.dart';
 import 'package:attendance_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -19,11 +20,13 @@ class _ReportPageState extends State<ReportPage> {
   //Create an instance of ScreenshotController
   ScreenshotController screenshotController = ScreenshotController();
 
+  late List<String> userInfo =
+      Provider.of<UserDataProvider>(context, listen: false).userData ?? [];
+
   @override
   Widget build(BuildContext context) {
     final int absenteeCount =
         Provider.of<StudentListProvider>(context).absentStudents.length;
-    const String header = '19SW-1';
     final String date = DateFormat.yMMMEd().format(DateTime.now());
     // ignore: cast_nullable_to_non_nullable
     final String report = ModalRoute.of(context)!.settings.arguments as String;
@@ -72,9 +75,9 @@ class _ReportPageState extends State<ReportPage> {
                         child: Center(
                           child: Column(
                             children: [
-                              const Text(
-                                header,
-                                style: TextStyle(
+                              Text(
+                                '${userInfo[1]}${userInfo[2]} - ${userInfo[3]}',
+                                style: const TextStyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white70,
@@ -145,7 +148,9 @@ class _ReportPageState extends State<ReportPage> {
                   buttonText: 'Copy Text',
                   onPressed: () {
                     Utils.getCopyableTextAndCopy(context,
-                        header: header, date: date, report: report);
+                        header: '${userInfo[1]}${userInfo[2]} - ${userInfo[3]}',
+                        date: date,
+                        report: report);
                   },
                   buttonColor: Colors.blue.shade200,
                 ),
