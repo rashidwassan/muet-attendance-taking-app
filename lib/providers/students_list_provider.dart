@@ -1,4 +1,6 @@
+import 'package:attendance_app/models/student.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class StudentListProvider with ChangeNotifier {
   int _currentStudent = 0;
@@ -73,6 +75,12 @@ class StudentListProvider with ChangeNotifier {
 
   set ifGetAbsenteesList(bool newVal) {
     _ifGetAbsenteesList = newVal;
+    notifyListeners();
+  }
+
+  addItem(Student student) async {
+    var box = await Hive.openBox<Student>('studentsRecord');
+    box.add(student);
     notifyListeners();
   }
 }

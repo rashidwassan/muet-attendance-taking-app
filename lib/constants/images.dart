@@ -1,6 +1,9 @@
 class Images {
   Images._();
+// animations
+  static const String sadAnim = 'assets/anim/shiba-sad.json';
 
+// images
   static const String muetLogo = 'assets/images/muet.png';
   static const String attendanceIcon = 'assets/images/attendance.png';
   static const String disappointed = 'assets/images/disappointed.png';
