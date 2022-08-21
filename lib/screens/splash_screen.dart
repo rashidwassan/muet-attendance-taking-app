@@ -1,4 +1,5 @@
 import 'package:attendance_app/db/prefs.dart';
+import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:attendance_app/providers/user_data_provider.dart';
 import 'package:attendance_app/screens/attendance_page.dart';
 import 'package:attendance_app/screens/batch_section_input_page.dart';
@@ -17,17 +18,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    loadUserData();
+    loadData();
     Future.delayed(const Duration(seconds: 2), () {
       navigate();
     });
   }
 
-  void loadUserData() async {
+  void loadData() async {
     Provider.of<UserDataProvider>(context, listen: false).userData =
         await PrefsDBService.getUserInfo();
+    // ignore: use_build_context_synchronously
+    Provider.of<StudentListProvider>(context, listen: false)
+        .loadStudentRecord();
   }
 
+  // ignore: avoid_void_async
   void navigate() async {
     if (await PrefsDBService.isFirstRun()) {
       Navigator.pushReplacementNamed(
