@@ -29,7 +29,8 @@ class _ReportPageState extends State<ReportPage> {
         Provider.of<StudentListProvider>(context).absentStudents.length;
     final String date = DateFormat.yMMMEd().format(DateTime.now());
     // ignore: cast_nullable_to_non_nullable
-    final String report = ModalRoute.of(context)!.settings.arguments as String;
+    String report = ModalRoute.of(context)!.settings.arguments as String;
+    report = report.substring(0, int.tryParse(report.length.toString())! - 2);
 
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
@@ -60,7 +61,7 @@ class _ReportPageState extends State<ReportPage> {
                       (absenteeCount == 0)
                           ? 'All Students Present!'
                           : '$absenteeCount students absent today!',
-                      style: const TextStyle(color: Colors.white70),
+                      style: const TextStyle(color: Colors.white),
                     ),
                     const SizedBox(
                       height: 24,
@@ -80,7 +81,7 @@ class _ReportPageState extends State<ReportPage> {
                                 style: const TextStyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.white70,
+                                  color: Colors.white,
                                 ),
                               ),
                               const SizedBox(
@@ -115,17 +116,12 @@ class _ReportPageState extends State<ReportPage> {
                               const SizedBox(
                                 height: 12,
                               ),
-                              SelectableText.rich(
-                                TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: report,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ],
+                              Text(
+                                report,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
                                 ),
                               ),
                               const SizedBox(
