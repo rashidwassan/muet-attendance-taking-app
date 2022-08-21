@@ -1,3 +1,4 @@
+import 'package:attendance_app/components/main_button.dart';
 import 'package:flutter/material.dart';
 
 class StudentsRecordPage extends StatefulWidget {
@@ -16,7 +17,16 @@ class _StudentsRecordPageState extends State<StudentsRecordPage> {
         elevation: 1,
         title: const Text('Student Database'),
       ),
-      body: Column(children: []),
+      body: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(children: [
+          MainButton(
+            buttonText: '+ ADD Student',
+            onPressed: () {},
+            buttonColor: Colors.green.withAlpha(100),
+          ),
+        ]),
+      ),
     );
   }
 }

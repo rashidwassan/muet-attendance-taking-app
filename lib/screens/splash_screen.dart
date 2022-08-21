@@ -1,5 +1,6 @@
 import 'package:attendance_app/screens/attendance_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = '/splash';
@@ -17,6 +18,12 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacementNamed(context, AttendancePage.routeName);
     });
+  }
+
+  Future<bool> checkForFirstRun() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? action = prefs.getString('username');
+    return action == null;
   }
 
   @override
