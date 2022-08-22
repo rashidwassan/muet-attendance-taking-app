@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class PrefsDBService {
   static Future<bool> isFirstRun() async {
     final prefs = await SharedPreferences.getInstance();
-    final List<String>? userData = prefs.getStringList('userData');
+    final List<String>? userData = prefs.getStringList('CRData');
     return userData == null;
   }
 
@@ -15,12 +15,12 @@ class PrefsDBService {
     required String section,
   }) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setStringList('userData', [name, batchCode, deptCode, section]);
+    prefs.setStringList('CRData', [name, batchCode, deptCode, section]);
   }
 
   static Future<List<String>?> getUserInfo() async {
     final prefs = await SharedPreferences.getInstance();
-    final List<String>? userData = prefs.getStringList('userData');
-    return userData;
+    final List<String>? cRData = prefs.getStringList('CRData');
+    return cRData;
   }
 }

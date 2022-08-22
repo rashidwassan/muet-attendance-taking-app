@@ -35,6 +35,8 @@ class _ReportPageState extends State<ReportPage> {
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
+        centerTitle: true,
+        elevation: 1,
         backgroundColor: Colors.grey.shade800,
         title: const Text('Attendance Report'),
       ),

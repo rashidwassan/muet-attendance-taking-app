@@ -65,8 +65,11 @@ class StudentListProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  updateStudentDataInDB(Student student,
-      {required String boxName, required int index}) async {
+  updateStudentDataInDB(
+    Student student, {
+    required String boxName,
+    required int index,
+  }) async {
     var box = await Hive.openBox<Student>(boxName);
     box.putAt(index, student);
     loadStudentRecord();

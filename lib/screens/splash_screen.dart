@@ -1,6 +1,5 @@
 import 'package:attendance_app/db/prefs.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
-import 'package:attendance_app/providers/user_data_provider.dart';
 import 'package:attendance_app/screens/attendance_page.dart';
 import 'package:attendance_app/screens/batch_section_input_page.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +24,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void loadData() async {
-    Provider.of<UserDataProvider>(context, listen: false).userData =
-        await PrefsDBService.getUserInfo();
-    // ignore: use_build_context_synchronously
     Provider.of<StudentListProvider>(context, listen: false)
         .loadStudentRecord();
   }
@@ -36,7 +32,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void navigate() async {
     if (await PrefsDBService.isFirstRun()) {
       Navigator.pushReplacementNamed(
-          context, BatchAndSectionSpecificationScreen.routeName);
+        context,
+        BatchAndSectionSpecificationScreen.routeName,
+      );
     } else {
       Navigator.pushReplacementNamed(context, AttendancePage.routeName);
     }

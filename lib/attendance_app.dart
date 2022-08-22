@@ -6,7 +6,6 @@ import 'package:attendance_app/screens/report_page.dart';
 import 'package:attendance_app/screens/splash_screen.dart';
 import 'package:attendance_app/screens/students_record_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class MUETAttendanceApp extends StatelessWidget {
@@ -26,7 +25,6 @@ class MUETAttendanceApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           brightness: Brightness.dark,
-          fontFamily: GoogleFonts.roboto().fontFamily,
         ),
         initialRoute: SplashScreen.routeName,
         routes: {

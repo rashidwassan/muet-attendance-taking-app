@@ -31,7 +31,7 @@ dynamic showRetakeConfirmationDialog(BuildContext context) {
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: const Text(
-                    'Are you sure you want to reset the progress? All current data will be lost.',
+                    'Are you sure you want to retake the attendance? All current data will be lost.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black87,

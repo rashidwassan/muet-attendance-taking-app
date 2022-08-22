@@ -43,12 +43,11 @@ class _BatchAndSectionSpecificationScreenState
   void saveAndContinue() {
     if (_formKey.currentState!.validate()) {
       PrefsDBService.saveCRData(
-        name: _nameController.text,
+        name: _nameController.text.trim(),
         batchCode: _batchCodeController.text,
         deptCode: _deptCodeController.text.toUpperCase(),
         section: _sectionCodeController.text.toUpperCase(),
       );
-
       Navigator.pushReplacementNamed(context, AttendancePage.routeName);
     }
   }
@@ -59,6 +58,7 @@ class _BatchAndSectionSpecificationScreenState
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 1,
+        centerTitle: true,
         title: Text('Welcome ${_nameController.text}!'),
       ),
       body: Padding(
