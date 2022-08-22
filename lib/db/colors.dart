@@ -19,15 +19,18 @@ class LightColors {
 // ignore: avoid_classes_with_only_static_members
 class TranslucentColors {
   static List<Color> colors = [
-    Colors.red.withAlpha(80),
-    Colors.blue.withAlpha(80),
-    Colors.green.withAlpha(80),
-    Colors.blueGrey.withAlpha(80),
-    Colors.deepPurpleAccent.withAlpha(80),
-    Colors.grey.withAlpha(80),
-    Colors.pink.withAlpha(80),
-    Colors.blueGrey.withAlpha(80),
-    Colors.tealAccent.withAlpha(80),
-    Colors.teal.withAlpha(80),
+    Colors.blue.withAlpha(100),
+    Colors.red.withAlpha(100),
+    Colors.green.withAlpha(100),
+    Colors.blueGrey.withAlpha(100),
+    Colors.deepPurpleAccent.withAlpha(100),
+    Colors.grey.withAlpha(100),
+    Colors.pink.withAlpha(100),
+    Colors.blueGrey.withAlpha(100),
+    Colors.tealAccent.withAlpha(100),
+    Colors.teal.withAlpha(100),
+    Colors.blueAccent.withAlpha(100),
+    Colors.purple.withAlpha(100),
+    Colors.yellow.withAlpha(100),
   ];
 }

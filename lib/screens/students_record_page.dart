@@ -146,10 +146,13 @@ class _StudentsRecordPageState extends State<StudentsRecordPage> {
                       'No students found in the record. Please tap that green button to start adding students.',
                       textAlign: TextAlign.center,
                     ),
+                    const SizedBox(
+                      height: 24,
+                    )
                   ],
                 ),
               const SizedBox(
-                height: 48,
+                height: 16,
               ),
               SizedBox(
                 height: 50,
