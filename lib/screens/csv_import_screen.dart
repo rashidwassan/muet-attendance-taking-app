@@ -6,14 +6,15 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class CsvToList extends StatefulWidget {
+class CSVDataEntryScreen extends StatefulWidget {
+  static const String routeName = '/csv-data-entry';
   @override
   State<StatefulWidget> createState() {
-    return CsvToListState();
+    return CSVDataEntryScreenState();
   }
 }
 
-class CsvToListState extends State<CsvToList> {
+class CSVDataEntryScreenState extends State<CSVDataEntryScreen> {
   late List<List<dynamic>> studentData;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -39,33 +40,34 @@ class CsvToListState extends State<CsvToList> {
               color: Colors.green,
               height: 30,
               child: TextButton(
+                onPressed: _openFileExplorer,
                 child: const Text(
                   "CSV To List",
                   style: TextStyle(color: Colors.white),
                 ),
-                onPressed: _openFileExplorer,
               ),
             ),
           ),
           ListView.builder(
-              shrinkWrap: true,
-              itemCount: studentData.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(studentData[index][0].toString()),
-                        Text(studentData[index][1].toString()),
-                        Text(studentData[index][2].toString()),
-                      ],
-                    ),
+            shrinkWrap: true,
+            itemCount: studentData.length,
+            itemBuilder: (context, index) {
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(studentData[index][0].toString()),
+                      Text(studentData[index][1].toString()),
+                      Text(studentData[index][2].toString()),
+                    ],
                   ),
-                );
-              }),
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
