@@ -27,6 +27,8 @@ class _AttendancePageState extends State<AttendancePage> {
   void generateReport() {
     report = Provider.of<StudentListProvider>(context, listen: false)
         .getRollsFromDesiredList();
+
+    if (report == '') report = 'Nothing to display!  ';
     Navigator.pushNamed(context, ReportPage.routeName, arguments: report);
   }
 
@@ -72,7 +74,7 @@ class _AttendancePageState extends State<AttendancePage> {
                 AspectRatio(
                   aspectRatio: 1.2,
                   child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 350),
+                    duration: const Duration(milliseconds: 250),
                     decoration: BoxDecoration(
                       color: LightColors.colors[
                           Random().nextInt(LightColors.colors.length - 1)],
@@ -81,15 +83,32 @@ class _AttendancePageState extends State<AttendancePage> {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Center(
-                        child: Text(
-                          listProvider.allStudents[listProvider.currentStudent]
-                              .rollNumber,
-                          style: TextStyle(
-                            fontSize: 55,
-                            fontFamily: GoogleFonts.concertOne().fontFamily,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              listProvider
+                                  .allStudents[listProvider.currentStudent]
+                                  .rollNumber,
+                              style: TextStyle(
+                                fontSize: 55,
+                                fontFamily: GoogleFonts.concertOne().fontFamily,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                            Text(
+                              listProvider
+                                  .allStudents[listProvider.currentStudent]
+                                  .name,
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontFamily: GoogleFonts.concertOne().fontFamily,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -105,7 +124,8 @@ class _AttendancePageState extends State<AttendancePage> {
                       MainButton(
                         buttonText: 'Generate Report',
                         onPressed: generateReport,
-                        buttonColor: Colors.amberAccent.shade100,
+                        buttonColor: LightColors.colors[
+                            Random().nextInt(LightColors.colors.length - 1)],
                       ),
                       const SizedBox(
                         height: 12,
