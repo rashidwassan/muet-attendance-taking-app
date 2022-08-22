@@ -149,7 +149,8 @@ class _AttendancePageState extends State<AttendancePage> {
                                 decoration: BoxDecoration(
                                   color: listProvider.ifGetAbsenteesList
                                       ? Colors.white38
-                                      : Colors.green.shade300,
+                                      : LightColors.colors[Random().nextInt(
+                                          LightColors.colors.length - 1)],
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: const Center(
@@ -176,7 +177,8 @@ class _AttendancePageState extends State<AttendancePage> {
                                 decoration: BoxDecoration(
                                   color: !listProvider.ifGetAbsenteesList
                                       ? Colors.white38
-                                      : Colors.green.shade300,
+                                      : LightColors.colors[Random().nextInt(
+                                          LightColors.colors.length - 1)],
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: const Center(

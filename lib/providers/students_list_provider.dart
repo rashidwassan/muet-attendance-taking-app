@@ -83,7 +83,7 @@ class StudentListProvider with ChangeNotifier {
   loadStudentRecord() async {
     final box = await Hive.openBox<Student>('studentsRecord');
     _allStudents = box.values.toList();
-    _allStudents.add(Student(name: '', rollNumber: 'All Caught Up!'));
+    _allStudents.add(Student(name: '', rollNumber: 'All Done!'));
     notifyListeners();
   }
 }
