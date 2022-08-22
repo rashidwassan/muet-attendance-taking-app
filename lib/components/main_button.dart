@@ -10,7 +10,7 @@ class MainButton extends StatelessWidget {
   });
 
   final String buttonText;
-  final Function() onPressed;
+  final Function()? onPressed;
   final Color buttonColor;
   final Color textColor;
 

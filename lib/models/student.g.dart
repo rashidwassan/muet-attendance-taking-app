@@ -17,7 +17,7 @@ class StudentAdapter extends TypeAdapter<Student> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Student(
-      name: fields[0] as String?,
+      name: fields[0] as String,
       rollNumber: fields[1] as String,
     );
   }

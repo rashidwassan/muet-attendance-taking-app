@@ -2,6 +2,7 @@ import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/components/textfields.dart';
 import 'package:attendance_app/models/student.dart';
 import 'package:attendance_app/providers/user_data_provider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -72,9 +73,11 @@ dynamic showRetakeConfirmationDialog(BuildContext context) {
 }
 
 dynamic showStudentDataInputDialog(
-  BuildContext context,
-) {
-  return showDialog(
+  BuildContext context, {
+  Student? student,
+  int? indexForUpdation,
+}) {
+  showDialog(
     context: context,
     builder: (context) {
       // importing _userData to extract batch and department code.
@@ -84,6 +87,11 @@ dynamic showStudentDataInputDialog(
           TextEditingController();
       final TextEditingController rollNumberController =
           TextEditingController(text: userData[1] + userData[2]);
+
+      if (student != null) {
+        studentNameController.text = student.name;
+        rollNumberController.text = student.rollNumber;
+      }
 
       final formKey = GlobalKey<FormState>();
       return Padding(
@@ -150,18 +158,37 @@ dynamic showStudentDataInputDialog(
                     SizedBox(
                       height: 55,
                       child: MainButton(
-                        buttonText: 'ADD',
+                        buttonText: student == null ? 'ADD' : 'UPDATE',
                         textColor: Colors.white,
                         onPressed: () {
+                          if (student != null) {
+                            if (studentNameController.text == student.name &&
+                                rollNumberController.text == student.rollNumber)
+                              return;
+                          }
                           if (formKey.currentState!.validate()) {
                             final Student newStudent = Student(
                               name: studentNameController.text,
                               rollNumber: rollNumberController.text,
                             );
-                            Provider.of<StudentListProvider>(
-                              context,
-                              listen: false,
-                            ).saveStudentDataToDB(newStudent);
+                            if (student != null && indexForUpdation != null) {
+                              Provider.of<StudentListProvider>(
+                                context,
+                                listen: false,
+                              ).updateStudentDataInDB(
+                                newStudent,
+                                boxName: 'studentsRecord',
+                                index: indexForUpdation,
+                              );
+                            } else {
+                              Provider.of<StudentListProvider>(
+                                context,
+                                listen: false,
+                              ).saveStudentDataToDB(
+                                newStudent,
+                                boxName: 'studentsRecord',
+                              );
+                            }
 
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -202,3 +229,35 @@ dynamic showStudentDataInputDialog(
     },
   );
 }
+
+// Future<bool> delete(
+//   BuildContext context, {
+//   required Student student,
+// }) {
+//   return showCupertinoDialog(
+    
+//     context: context,
+//     builder: (BuildContext ctx) {
+//       return CupertinoAlertDialog(
+//         title: const Text('Please Confirm'),
+//         content: Text('Are you sure to remove ${student.rollNumber}?'),
+//         actions: [
+//           CupertinoDialogAction(
+//             onPressed: () {
+//               Navigator.pop(context, true);
+//             },
+//             isDefaultAction: true,
+//             isDestructiveAction: true,
+//             child: const Text('Yes'),
+//           ),
+//           CupertinoDialogAction(
+//             onPressed: () {
+//               Navigator.pop(context, true);
+//             },
+//             child: const Text('No'),
+//           )
+//         ],
+//       );
+//     },
+//   );
+// }

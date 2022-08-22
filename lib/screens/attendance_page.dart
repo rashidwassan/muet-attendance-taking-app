@@ -4,6 +4,7 @@ import 'package:attendance_app/components/desired_student_wrap.dart';
 import 'package:attendance_app/components/dialogs.dart';
 import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/components/present_absent_buttons.dart';
+import 'package:attendance_app/db/colors.dart';
 import 'package:attendance_app/providers/students_list_provider.dart';
 import 'package:attendance_app/providers/user_data_provider.dart';
 import 'package:attendance_app/screens/report_page.dart';
@@ -22,18 +23,6 @@ class AttendancePage extends StatefulWidget {
 
 class _AttendancePageState extends State<AttendancePage> {
   late String report;
-  List<Color> colors = [
-    Colors.red.shade100,
-    Colors.blue.shade100,
-    Colors.green.shade100,
-    Colors.blueGrey.shade100,
-    Colors.deepPurpleAccent.shade100,
-    Colors.grey.shade100,
-    Colors.pink.shade100,
-    Colors.blueGrey.shade100,
-    Colors.tealAccent.shade100,
-    Colors.teal.shade100,
-  ];
 
   void generateReport() {
     report = Provider.of<StudentListProvider>(context, listen: false)
@@ -85,7 +74,8 @@ class _AttendancePageState extends State<AttendancePage> {
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 350),
                     decoration: BoxDecoration(
-                      color: colors[Random().nextInt(colors.length - 1)],
+                      color: LightColors.colors[
+                          Random().nextInt(LightColors.colors.length - 1)],
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Padding(
@@ -188,7 +178,7 @@ class _AttendancePageState extends State<AttendancePage> {
                   height: 32,
                   color: Colors.white,
                 ),
-                DesiredStudentRollNumbersDisplay(colors),
+                DesiredStudentRollNumbersDisplay(LightColors.colors),
               ],
             ),
           ),

@@ -58,17 +58,32 @@ class StudentListProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  saveStudentDataToDB(Student student) async {
-    var box = await Hive.openBox<Student>('studentsRecord');
+  saveStudentDataToDB(Student student, {required String boxName}) async {
+    var box = await Hive.openBox<Student>(boxName);
     box.add(student);
+    loadStudentRecord();
+    notifyListeners();
+  }
+
+  updateStudentDataInDB(Student student,
+      {required String boxName, required int index}) async {
+    var box = await Hive.openBox<Student>(boxName);
+    box.putAt(index, student);
+    loadStudentRecord();
+    notifyListeners();
+  }
+
+  deleteStudentDataFromDB(int index, {required String boxName}) async {
+    var box = await Hive.openBox<Student>(boxName);
+    box.deleteAt(index);
+    loadStudentRecord();
     notifyListeners();
   }
 
   loadStudentRecord() async {
     final box = await Hive.openBox<Student>('studentsRecord');
-
     _allStudents = box.values.toList();
-
+    _allStudents.add(Student(name: '', rollNumber: 'All Caught Up!'));
     notifyListeners();
   }
 }
