@@ -1,5 +1,6 @@
 import 'package:attendance_app/components/main_button.dart';
 import 'package:attendance_app/components/textfields.dart';
+import 'package:attendance_app/constants/strings.dart';
 import 'package:attendance_app/models/student.dart';
 import 'package:attendance_app/providers/user_data_provider.dart';
 import 'package:flutter/cupertino.dart';
@@ -186,7 +187,7 @@ dynamic showStudentDataInputDialog(
                                 listen: false,
                               ).saveStudentDataToDB(
                                 newStudent,
-                                boxName: 'studentsRecord',
+                                boxName: StringConstants.studentDBName,
                               );
                             }
 
