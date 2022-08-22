@@ -30,7 +30,7 @@ class _AttendancePageState extends State<AttendancePage> {
     report = Provider.of<StudentListProvider>(context, listen: false)
         .getRollsFromDesiredList();
 
-    if (report == '') report = 'Nothing to display!  ';
+    if (report == '') report = 'No student to display.  ';
     Navigator.pushNamed(context, ReportPage.routeName, arguments: report);
   }
 
