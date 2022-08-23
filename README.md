@@ -1,17 +1,20 @@
-# attendance_app
+# Attendance Report Generator
 
-A new Flutter project.
+### This Flutter application is developed to aid in taking the attendance of the students on your phone and generate the report as a text or image.
 
-## Getting Started
+## Flutter packages/plugins used:
+- State management: `Provider`
+- Database: `Hive`
+- For loading CSV files: `CSV`
+- For copying text to the clipboard: `Clipboard`
+- For taking screenshot of the report: `Screenshot`
+- For date time Format: `Intl`
+- For sharing: `Share`
+- For getting paths: `Path Provider`
+- For animations: `Lottie`
+- For permission handling: `Permission Handler`
 
-This project is a starting point for a Flutter application.
+## Feel free to add your contribution!
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# muet-attendance-taking-app
+### Screens
+> Mockup
