@@ -17,5 +17,10 @@
 ## Feel free to add your contribution!
 
 ### Screens
-> Mockup
+<br />
+
 ![attendance_app_mockup](https://user-images.githubusercontent.com/60597290/186166977-c05315d6-7421-4350-a7a0-010e4835fc58.png)
+
+<br />
+
+### Thank you for visiting this repo!
