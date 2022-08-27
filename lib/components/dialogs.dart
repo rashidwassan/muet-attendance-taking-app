@@ -231,6 +231,109 @@ dynamic showStudentDataInputDialog(
   );
 }
 
+dynamic showSubjectNameDialog(
+  BuildContext context,
+) {
+  showDialog(
+    barrierDismissible: true,
+    context: context,
+    builder: (context) {
+      final formKey = GlobalKey<FormState>();
+      final TextEditingController subjectNameController =
+          TextEditingController();
+      return Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: Material(
+          elevation: 40,
+          color: Colors.transparent,
+          child: Center(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade800,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Form(
+                key: formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white70,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Text(
+                        'Subject Name',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black87,
+                          fontSize: 22,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 32,
+                    ),
+                    AttendanceAppTextField(
+                      batchCodeController: subjectNameController,
+                      hintText: '',
+                      label: '',
+                      title:
+                          "Please enter the name of subject you're taking attendance for:",
+                      onChanged: (v) {},
+                      onSubmitted: (v) {},
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    SizedBox(
+                      height: 55,
+                      child: MainButton(
+                        buttonText: 'UPDATE',
+                        textColor: Colors.white,
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            Provider.of<StudentListProvider>(
+                              context,
+                              listen: false,
+                            ).subjectName = subjectNameController.text;
+
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text(
+                                  'Subject name added.',
+                                ),
+                              ),
+                            );
+                            Navigator.pop(context);
+                          }
+                        },
+                        buttonColor: Colors.red.shade200,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    },
+  );
+}
+
 // Future<bool> delete(
 //   BuildContext context, {
 //   required Student student,

@@ -5,6 +5,7 @@ import 'package:hive/hive.dart';
 class StudentListProvider with ChangeNotifier {
   int _currentStudent = 0;
   bool _ifGetAbsenteesList = true;
+  String _subjectName = '';
   List<Student> _allStudents = [];
 
   // integers for storing the indices of absentees
@@ -12,12 +13,17 @@ class StudentListProvider with ChangeNotifier {
   List<int> _absentStudents = [];
 
   int get currentStudent => _currentStudent;
+  String get subjectName => _subjectName;
   List<Student> get allStudents => _allStudents;
   List<int> get presentStudents => _presentStudents;
   List<int> get absentStudents => _absentStudents;
-
   List<int> get desiredStudents =>
       _ifGetAbsenteesList ? _absentStudents : _presentStudents;
+
+  set subjectName(String subjectName) {
+    _subjectName = subjectName;
+    notifyListeners();
+  }
 
   void addToPresentsList() {
     if (currentStudent == allStudents.length - 1) return;

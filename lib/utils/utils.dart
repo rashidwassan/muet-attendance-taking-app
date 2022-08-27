@@ -26,7 +26,8 @@ class Utils {
             .ifGetAbsenteesList
         ? 'LIST OF ABSENT STUDENTS\n'
         : 'LIST OF PRESENT STUDENTS\n';
-
+    textToBeCopied +=
+        '${Provider.of<StudentListProvider>(context, listen: false).subjectName}\n';
     textToBeCopied += report;
     textToBeCopied += '\n\n---------------------\n';
     textToBeCopied +=

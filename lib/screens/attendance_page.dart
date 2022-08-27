@@ -40,6 +40,10 @@ class _AttendancePageState extends State<AttendancePage> {
   void initState() {
     super.initState();
     loadData();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await showSubjectNameDialog(context);
+    });
   }
 
   void loadData() async {
@@ -64,7 +68,11 @@ class _AttendancePageState extends State<AttendancePage> {
         backgroundColor: Colors.grey.shade900,
         title: userInfo == null
             ? const SizedBox()
-            : Text('${userInfo![1]}${userInfo![2]} - ${userInfo![3]}'),
+            : Consumer<StudentListProvider>(
+                builder: (context, listData, child) => Text(
+                  '${userInfo![1]}${userInfo![2]} - ${userInfo![3]} - ${listData.subjectName}',
+                ),
+              ),
         actions: [
           IconButton(
             onPressed: () {

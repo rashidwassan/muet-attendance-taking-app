@@ -103,15 +103,16 @@ class _ReportPageState extends State<ReportPage> {
                               Text(
                                 Provider.of<StudentListProvider>(context)
                                         .ifGetAbsenteesList
-                                    ? 'LIST OF ABSENT STUDENTS'
-                                    : 'LIST OF PRESENT STUDENTS',
+                                    ? 'LIST OF ABSENT STUDENTS FOR: ${Provider.of<StudentListProvider>(context).subjectName.toUpperCase()}'
+                                    : 'LIST OF PRESENT STUDENTS FOR: ${Provider.of<StudentListProvider>(context).subjectName.toUpperCase()}',
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
                                   color:
                                       Provider.of<StudentListProvider>(context)
                                               .ifGetAbsenteesList
-                                          ? Colors.red.shade400
+                                          ? Colors.red.shade300
                                           : Colors.green,
                                 ),
                               ),
