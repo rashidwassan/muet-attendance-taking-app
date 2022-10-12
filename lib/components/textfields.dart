@@ -34,31 +34,48 @@ class AttendanceAppTextField extends StatelessWidget {
         const SizedBox(
           height: 12,
         ),
-        TextFormField(
-          focusNode: focusNode,
-          controller: _batchCodeController,
-          keyboardType: textInputType,
-          onChanged: onChanged,
-          onFieldSubmitted: onSubmitted,
-          validator: (value) {
-            if (value!.isEmpty) return 'Fields cannot be empty!';
-          },
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-            // label: Text(label),
-            hintText: hintText,
-            hintStyle: const TextStyle(color: Colors.white38),
-            labelStyle: TextStyle(color: Colors.amber.shade100),
-            border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.teal.shade100, width: 0.5),
+        DecoratedBox(
+          decoration: BoxDecoration(
+            color: Colors.grey.shade800,
+            borderRadius: BorderRadius.circular(2),
+            boxShadow: const [
+              BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 3,
+                  spreadRadius: 1,
+                  offset: Offset(2, 2)),
+            ],
+          ),
+          child: TextFormField(
+            focusNode: focusNode,
+            controller: _batchCodeController,
+            keyboardType: textInputType,
+            onChanged: onChanged,
+            onFieldSubmitted: onSubmitted,
+            validator: (value) {
+              if (value!.isEmpty) return 'Fields cannot be empty!';
+              return null;
+            },
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+              // label: Text(label),
+              hintText: hintText,
+              hintStyle: const TextStyle(color: Colors.white38),
+              labelStyle: TextStyle(color: Colors.amber.shade100),
+              border: OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.teal.shade100,
+                  width: 0.5,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.teal.shade400, width: 0.5),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red.shade300, width: 0.5),
+              ),
+              errorStyle: TextStyle(color: Colors.redAccent.shade200),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.teal.shade400, width: 0.5),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.red.shade300, width: 0.5),
-            ),
-            errorStyle: TextStyle(color: Colors.redAccent.shade200),
           ),
         ),
       ],
