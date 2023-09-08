@@ -3,6 +3,7 @@ import 'package:attendance_app/components/textfields.dart';
 import 'package:attendance_app/constants/strings.dart';
 import 'package:attendance_app/models/student.dart';
 import 'package:attendance_app/providers/user_data_provider.dart';
+import 'package:attendance_app/screens/attendance_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,57 +15,65 @@ dynamic showRetakeConfirmationDialog(BuildContext context) {
     context: context,
     builder: (context) => Padding(
       padding: const EdgeInsets.all(24.0),
-      child: Material(
-        elevation: 40,
-        color: Colors.transparent,
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: SizedBox(
-            height: 400,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: const Text(
-                    'Are you sure you want to retake the attendance? All current data will be lost.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 22,
+      child: Center(
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(24),
+          child: Material(
+            elevation: 80,
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: SizedBox(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: const Text(
+                        'Are you sure you want to retake the attendance? All current data will be lost.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black87,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
                     ),
-                  ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    MainButton(
+                      buttonText: 'RESET',
+                      onPressed: () {
+                        Provider.of<StudentListProvider>(
+                          context,
+                          listen: false,
+                        ).retakeAttendance();
+                        Navigator.pop(context);
+                        Navigator.of(context)
+                            .pushReplacementNamed(AttendancePage.routeName);
+                      },
+                      buttonColor: Colors.red.shade200,
+                      textColor: Colors.white,
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    MainButton(
+                      buttonText: 'DISMISS',
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      buttonColor: Colors.teal.shade200,
+                      textColor: Colors.white,
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 24,
-                ),
-                MainButton(
-                  buttonText: 'RESET',
-                  onPressed: () {
-                    Provider.of<StudentListProvider>(
-                      context,
-                      listen: false,
-                    ).retakeAttendance();
-                    Navigator.pop(context);
-                  },
-                  buttonColor: Colors.red.shade200,
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                MainButton(
-                  buttonText: 'DISMISS',
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  buttonColor: Colors.teal.shade200,
-                ),
-              ],
+              ),
             ),
           ),
         ),
@@ -127,7 +136,8 @@ dynamic showStudentDataInputDialog(
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.black87,
-                          fontSize: 22,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -201,7 +211,7 @@ dynamic showStudentDataInputDialog(
                             Navigator.pop(context);
                           }
                         },
-                        buttonColor: Colors.red.shade200,
+                        buttonColor: Colors.red.shade300,
                       ),
                     ),
                     const SizedBox(
@@ -210,11 +220,12 @@ dynamic showStudentDataInputDialog(
                     SizedBox(
                       height: 55,
                       child: MainButton(
+                        textColor: Colors.white,
                         buttonText: 'DISMISS',
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        buttonColor: Colors.teal.shade200,
+                        buttonColor: Colors.teal.shade300,
                       ),
                     ),
                     const SizedBox(
@@ -268,12 +279,15 @@ dynamic showSubjectNameDialog(
                         color: Colors.white70,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text(
-                        'Subject Name',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontSize: 22,
+                      child: const Center(
+                        child: Text(
+                          'Subject Name',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     ),
@@ -302,7 +316,8 @@ dynamic showSubjectNameDialog(
                             Provider.of<StudentListProvider>(
                               context,
                               listen: false,
-                            ).subjectName = subjectNameController.text;
+                            ).subjectName =
+                                subjectNameController.text.toUpperCase();
 
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(

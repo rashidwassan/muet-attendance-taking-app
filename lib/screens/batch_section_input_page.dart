@@ -59,7 +59,9 @@ class _BatchAndSectionSpecificationScreenState
       appBar: AppBar(
         elevation: 1,
         centerTitle: true,
-        title: Text('Welcome ${_nameController.text}!'),
+        title: _nameController.text != ''
+            ? Text('Welcome, ${_nameController.text}!')
+            : const Text('Welcome!'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
@@ -70,12 +72,11 @@ class _BatchAndSectionSpecificationScreenState
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Center(
-                //   child: Image.asset(
-                //     Images.welcome,
-                //     width: 100,
-                //   ),
-                // ),
+                const Center(
+                  child: Text(
+                    "Please Enter the Required Details.",
+                  ),
+                ),
                 const SizedBox(
                   height: 16,
                 ),
@@ -83,7 +84,7 @@ class _BatchAndSectionSpecificationScreenState
                   batchCodeController: _nameController,
                   focusNode: _nameFieldFocusNode,
                   hintText: '',
-                  title: 'Please enter your name:',
+                  title: 'CR Name:',
                   label: 'Your Name',
                   textInputType: TextInputType.name,
                   onChanged: (v) {
@@ -100,7 +101,7 @@ class _BatchAndSectionSpecificationScreenState
                   batchCodeController: _batchCodeController,
                   focusNode: _batchFieldFocusNode,
                   hintText: 'i.e 19',
-                  title: 'Please enter your batch code:',
+                  title: 'Batch:',
                   label: 'Batch Number',
                   textInputType: TextInputType.number,
                   onChanged: (v) {
@@ -116,7 +117,7 @@ class _BatchAndSectionSpecificationScreenState
                     batchCodeController: _deptCodeController,
                     focusNode: _deptFieldFocusNode,
                     hintText: 'i.e SW',
-                    title: 'Please enter your department code:',
+                    title: 'Department (Code):',
                     label: 'Department Code',
                     onChanged: (v) {
                       setState(() {});
@@ -130,7 +131,7 @@ class _BatchAndSectionSpecificationScreenState
                   batchCodeController: _sectionCodeController,
                   focusNode: _sectionFieldFocusNode,
                   hintText: 'i.e 01/A',
-                  title: 'Please enter your Section:',
+                  title: 'Section:',
                   label: 'Section',
                   onChanged: (v) {
                     setState(() {});

@@ -13,6 +13,7 @@ class LightColors {
     Colors.blueGrey.shade100,
     Colors.tealAccent.shade100,
     Colors.teal.shade100,
+    Colors.deepOrange.shade100,
   ];
 }
 

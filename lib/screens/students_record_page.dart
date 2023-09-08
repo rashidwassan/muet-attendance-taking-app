@@ -37,7 +37,7 @@ class _StudentsRecordPageState extends State<StudentsRecordPage> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(16.0),
         child: Consumer<StudentListProvider>(
           builder: (context, listProvider, child) {
             return Column(
@@ -160,7 +160,7 @@ class _StudentsRecordPageState extends State<StudentsRecordPage> {
                 SizedBox(
                   height: 50,
                   child: MainButton(
-                    buttonText: '+ ADD Student',
+                    buttonText: '+ Add Student',
                     textColor: Colors.white,
                     onPressed: () {
                       showStudentDataInputDialog(context);
@@ -168,18 +168,25 @@ class _StudentsRecordPageState extends State<StudentsRecordPage> {
                     buttonColor: Colors.green.shade400,
                   ),
                 ),
-                const SizedBox(
-                  height: 24,
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
+                  child: Text(
+                    'OR',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, CSVDataEntryScreen.routeName);
                   },
                   child: const Text(
-                    'Add record from CSV file',
+                    'Add Record from a CSV File',
                     style: TextStyle(decoration: TextDecoration.underline),
                   ),
-                )
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
               ],
             );
           },

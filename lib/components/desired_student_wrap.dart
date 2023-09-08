@@ -23,7 +23,7 @@ class DesiredStudentRollNumbersDisplay extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          if (listProvider.absentStudents.isEmpty)
+          if (listProvider.desiredStudents.isEmpty)
             Center(
               child: Column(
                 children: [
@@ -31,15 +31,19 @@ class DesiredStudentRollNumbersDisplay extends StatelessWidget {
                     height: 24,
                   ),
                   Image.asset(
-                    Images.smiley,
+                    listProvider.ifGetAbsenteesList
+                        ? Images.smiley
+                        : Images.disappointed,
                     width: 60,
                   ),
                   const SizedBox(
                     height: 8,
                   ),
-                  const Text(
-                    'No Absentees so far!',
-                    style: TextStyle(color: Colors.white60),
+                  Text(
+                    listProvider.ifGetAbsenteesList
+                        ? 'No Absentees So Far!'
+                        : 'All Students are Absent!',
+                    style: const TextStyle(color: Colors.white60),
                   )
                 ],
               ),

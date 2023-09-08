@@ -37,13 +37,14 @@ class AttendanceAppTextField extends StatelessWidget {
         DecoratedBox(
           decoration: BoxDecoration(
             color: Colors.grey.shade800,
-            borderRadius: BorderRadius.circular(2),
+            borderRadius: BorderRadius.circular(8),
             boxShadow: const [
               BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 3,
-                  spreadRadius: 1,
-                  offset: Offset(2, 2)),
+                color: Colors.black12,
+                blurRadius: 3,
+                spreadRadius: 1,
+                offset: Offset(2, 2),
+              ),
             ],
           ),
           child: TextFormField(
@@ -53,7 +54,7 @@ class AttendanceAppTextField extends StatelessWidget {
             onChanged: onChanged,
             onFieldSubmitted: onSubmitted,
             validator: (value) {
-              if (value!.isEmpty) return 'Fields cannot be empty!';
+              if (value!.isEmpty) return 'Field cannot be left empty!';
               return null;
             },
             decoration: InputDecoration(
@@ -63,15 +64,18 @@ class AttendanceAppTextField extends StatelessWidget {
               hintStyle: const TextStyle(color: Colors.white38),
               labelStyle: TextStyle(color: Colors.amber.shade100),
               border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide(
                   color: Colors.teal.shade100,
                   width: 0.5,
                 ),
               ),
               focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide(color: Colors.teal.shade400, width: 0.5),
               ),
               errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide(color: Colors.red.shade300, width: 0.5),
               ),
               errorStyle: TextStyle(color: Colors.redAccent.shade200),

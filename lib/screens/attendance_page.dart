@@ -12,6 +12,7 @@ import 'package:attendance_app/providers/user_data_provider.dart';
 import 'package:attendance_app/screens/report_page.dart';
 import 'package:attendance_app/screens/students_record_page.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +26,7 @@ class AttendancePage extends StatefulWidget {
 
 class _AttendancePageState extends State<AttendancePage> {
   late String report;
+  final String date = DateFormat.yMMMEd().format(DateTime.now());
 
   void generateReport() {
     report = Provider.of<StudentListProvider>(context, listen: false)
@@ -69,8 +71,20 @@ class _AttendancePageState extends State<AttendancePage> {
         title: userInfo == null
             ? const SizedBox()
             : Consumer<StudentListProvider>(
-                builder: (context, listData, child) => Text(
-                  '${userInfo![1]}${userInfo![2]} - ${userInfo![3]} - ${listData.subjectName}',
+                builder: (context, listData, child) => Column(
+                  children: [
+                    Text(
+                      '${userInfo![1]}${userInfo![2]}-${userInfo![3]} ${listData.subjectName}',
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 3,
+                    ),
+                    Text(
+                      date,
+                      style: const TextStyle(fontSize: 12),
+                    )
+                  ],
                 ),
               ),
         actions: [
@@ -177,7 +191,7 @@ class _AttendancePageState extends State<AttendancePage> {
                         Column(
                           children: [
                             MainButton(
-                              buttonText: 'Generate Report',
+                              buttonText: 'GENERATE REPORT',
                               onPressed: generateReport,
                               buttonColor: LightColors.colors[Random()
                                   .nextInt(LightColors.colors.length - 1)],
@@ -186,7 +200,8 @@ class _AttendancePageState extends State<AttendancePage> {
                               height: 12,
                             ),
                             const Text(
-                                'Please select the list to be generated:'),
+                              'Please select the list to be generated:',
+                            ),
                             const SizedBox(
                               height: 12,
                             ),
@@ -206,10 +221,10 @@ class _AttendancePageState extends State<AttendancePage> {
                                       decoration: BoxDecoration(
                                         color: listProvider.ifGetAbsenteesList
                                             ? Colors.white38
-                                            : LightColors.colors[Random()
-                                                .nextInt(
-                                                    LightColors.colors.length -
-                                                        1)],
+                                            : LightColors
+                                                .colors[Random().nextInt(
+                                                LightColors.colors.length - 1,
+                                              )],
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                       child: const Center(
@@ -262,7 +277,7 @@ class _AttendancePageState extends State<AttendancePage> {
                         const OptionButtons(),
                       const Divider(
                         height: 32,
-                        color: Colors.white,
+                        color: Colors.white60,
                       ),
                       DesiredStudentRollNumbersDisplay(LightColors.colors),
                     ],

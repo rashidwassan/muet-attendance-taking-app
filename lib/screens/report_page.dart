@@ -62,7 +62,7 @@ class _ReportPageState extends State<ReportPage> {
                     Text(
                       (absenteeCount == 0)
                           ? 'All Students Present!'
-                          : '$absenteeCount students absent today!',
+                          : '$absenteeCount student(s) absent today!',
                       style: const TextStyle(color: Colors.white),
                     ),
                     const SizedBox(

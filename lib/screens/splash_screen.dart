@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     loadData();
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 1), () {
       navigate();
     });
   }
@@ -46,55 +46,37 @@ class _SplashScreenState extends State<SplashScreen> {
 
     return Scaffold(
       body: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.grey.shade900,
-              Colors.black38,
-              Colors.grey.shade900
-            ],
-          ),
-        ),
+        decoration: BoxDecoration(color: Colors.grey.shade900),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TweenAnimationBuilder(
-                curve: Curves.bounceInOut,
-                duration: const Duration(milliseconds: 800),
-                tween: Tween<double>(
-                  begin: 0.01,
-                  end: 0.45,
+              Container(
+                width: size.width * 0.45,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      spreadRadius: 1,
+                      blurRadius: 4,
+                      offset: Offset(4, 4),
+                    )
+                  ],
                 ),
-                builder: (context, double val, child) => Container(
-                  width: size.width * val,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black26,
-                          spreadRadius: 1,
-                          blurRadius: 4,
-                          offset: Offset(4, 4))
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: FittedBox(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              'assets/images/muet.png',
-                              width: size.width * val,
-                            ),
-                          ],
-                        ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: FittedBox(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/muet.png',
+                          ),
+                        ],
                       ),
                     ),
                   ),
