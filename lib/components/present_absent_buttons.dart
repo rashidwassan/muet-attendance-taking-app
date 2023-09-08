@@ -16,7 +16,7 @@ class OptionButtons extends StatelessWidget {
         children: [
           MainButton(
             buttonText: 'PRESENT',
-            buttonColor: Colors.green.shade200,
+            buttonColor: const Color(0xFFC5FAD6),
             onPressed: () {
               listProvider.addToPresentsList();
             },
@@ -26,7 +26,8 @@ class OptionButtons extends StatelessWidget {
           ),
           MainButton(
             buttonText: 'ABSENT',
-            buttonColor: Colors.red.shade200,
+            textColor: Colors.white,
+            buttonColor: const Color(0xFFFA6166),
             onPressed: () {
               listProvider.addToAbsenteesList();
             },

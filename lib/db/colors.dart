@@ -14,6 +14,11 @@ class LightColors {
     Colors.tealAccent.shade100,
     Colors.teal.shade100,
     Colors.deepOrange.shade100,
+    const Color(0xFFFCE67D),
+    const Color(0xFFC5FAD6),
+    const Color(0xFFE2D1F9),
+    const Color(0xFFB4EDD2),
+    const Color(0xFFA0CFD3),
   ];
 }
 
