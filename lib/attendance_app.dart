@@ -31,7 +31,7 @@ class MUETAttendanceApp extends StatelessWidget {
             backgroundColor: Colors.grey.shade900,
             centerTitle: true,
             elevation: 0,
-            iconTheme: const IconThemeData(size: 20),
+            iconTheme: const IconThemeData(color: Colors.white60, size: 20),
           ),
           scaffoldBackgroundColor: Colors.grey.shade900,
         ),

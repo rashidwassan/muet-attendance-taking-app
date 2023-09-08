@@ -20,7 +20,7 @@ class MainButton extends StatelessWidget {
       onPressed: onPressed,
       elevation: 0,
       highlightElevation: 0,
-      height: 75,
+      height: 70,
       color: buttonColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
