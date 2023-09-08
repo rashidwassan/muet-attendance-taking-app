@@ -23,8 +23,8 @@ class _StudentsRecordPageState extends State<StudentsRecordPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
-        elevation: 1,
         title: const Text('Student Database'),
         actions: [
           IconButton(
@@ -165,7 +165,7 @@ class _StudentsRecordPageState extends State<StudentsRecordPage> {
                     onPressed: () {
                       showStudentDataInputDialog(context);
                     },
-                    buttonColor: Colors.green.shade400,
+                    buttonColor: Colors.green.shade300,
                   ),
                 ),
                 const Padding(

@@ -86,8 +86,6 @@ class CSVDataEntryScreenState extends State<CSVDataEntryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        elevation: 1,
         title: const Text("CSV Data Entry"),
       ),
       body: Padding(
@@ -129,7 +127,7 @@ class CSVDataEntryScreenState extends State<CSVDataEntryScreen> {
                     height: 16,
                   ),
                   SizedBox(
-                    height: 45,
+                    height: isCSVLoaded ? 45 : 65,
                     child: MainButton(
                       onPressed: isCSVLoaded
                           ? _saveRecordsToDatabase

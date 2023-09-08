@@ -63,11 +63,7 @@ class _AttendancePageState extends State<AttendancePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
-        elevation: 1,
-        centerTitle: true,
-        backgroundColor: Colors.grey.shade900,
         title: userInfo == null
             ? const SizedBox()
             : Consumer<StudentListProvider>(

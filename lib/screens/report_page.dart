@@ -33,11 +33,7 @@ class _ReportPageState extends State<ReportPage> {
     report = report.substring(0, int.tryParse(report.length.toString())! - 2);
 
     return Scaffold(
-      backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
-        centerTitle: true,
-        elevation: 1,
-        backgroundColor: Colors.grey.shade800,
         title: const Text('Attendance Report'),
       ),
       body: SafeArea(

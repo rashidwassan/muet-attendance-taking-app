@@ -57,12 +57,21 @@ class _BatchAndSectionSpecificationScreenState
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 1,
-        centerTitle: true,
-        title: _nameController.text != ''
-            ? Text('Welcome, ${_nameController.text}!')
-            : const Text('Welcome!'),
-      ),
+          title: Column(
+        children: [
+          if (_nameController.text != '')
+            Text('Welcome, ${_nameController.text}!👋🏻')
+          else
+            const Text('Welcome'),
+          const SizedBox(
+            height: 3,
+          ),
+          const Text(
+            "Please Enter the Required Details.",
+            style: TextStyle(fontSize: 12),
+          ),
+        ],
+      )),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Form(
@@ -72,14 +81,6 @@ class _BatchAndSectionSpecificationScreenState
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Center(
-                  child: Text(
-                    "Please Enter the Required Details.",
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
                 AttendanceAppTextField(
                   batchCodeController: _nameController,
                   focusNode: _nameFieldFocusNode,
@@ -173,7 +174,7 @@ class _BatchAndSectionSpecificationScreenState
                   child: MainButton(
                     buttonText: 'Save & Continue',
                     onPressed: saveAndContinue,
-                    buttonColor: Colors.green,
+                    buttonColor: Colors.green.shade300,
                   ),
                 ),
                 const SizedBox(

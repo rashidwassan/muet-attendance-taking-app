@@ -33,13 +33,15 @@ dynamic showRetakeConfirmationDialog(BuildContext context) {
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(16),
                       ),
-                      child: const Text(
-                        'Are you sure you want to retake the attendance? All current data will be lost.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black87,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                      child: const Center(
+                        child: Text(
+                          'Are you sure you want to retake the attendance?\nAll current data will be lost.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     ),

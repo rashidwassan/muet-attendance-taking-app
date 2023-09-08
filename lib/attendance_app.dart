@@ -17,7 +17,8 @@ class MUETAttendanceApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ListenableProvider<StudentListProvider>(
-            create: (_) => StudentListProvider()),
+          create: (_) => StudentListProvider(),
+        ),
         ListenableProvider<UserDataProvider>(create: (_) => UserDataProvider()),
       ],
       child: MaterialApp(
@@ -26,6 +27,13 @@ class MUETAttendanceApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
           brightness: Brightness.dark,
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.grey.shade900,
+            centerTitle: true,
+            elevation: 0,
+            iconTheme: const IconThemeData(size: 20),
+          ),
+          scaffoldBackgroundColor: Colors.grey.shade900,
         ),
         initialRoute: SplashScreen.routeName,
         routes: {

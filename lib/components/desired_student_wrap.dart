@@ -55,12 +55,17 @@ class DesiredStudentRollNumbersDisplay extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
                     child: Chip(
-                      // onDeleted: () {},
-                      // deleteIcon: Icon(
-                      //   Icons.delete,
-                      //   size: 19,
-                      //   color: Colors.red.shade400,
-                      // ),
+                      deleteButtonTooltipMessage:
+                          listProvider.ifGetAbsenteesList
+                              ? 'Remove from absentees list'
+                              : "Remove from present students' list",
+                      onDeleted: () {},
+                      deleteIcon: Icon(
+                        Icons.close,
+                        size: 15,
+                        color: Colors.grey.shade700,
+                      ),
+                      visualDensity: VisualDensity.compact,
                       backgroundColor:
                           colors[Random().nextInt(colors.length - 1)],
                       label: Text(
