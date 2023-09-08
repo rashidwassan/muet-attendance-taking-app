@@ -59,7 +59,11 @@ class DesiredStudentRollNumbersDisplay extends StatelessWidget {
                           listProvider.ifGetAbsenteesList
                               ? 'Remove from absentees list'
                               : "Remove from present students' list",
-                      onDeleted: () {},
+                      onDeleted: () {
+                        listProvider.removeFromCurrentList(
+                          listProvider.desiredStudents[i],
+                        );
+                      },
                       deleteIcon: const Icon(
                         Icons.close,
                         size: 15,

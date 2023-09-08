@@ -39,6 +39,27 @@ class StudentListProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  void removeFromPresentsList(int index) {
+    _presentStudents.remove(index);
+    _absentStudents.add(index);
+    _absentStudents.sort();
+  }
+
+  void removeFromAbsenteesList(int index) {
+    _absentStudents.remove(index);
+    _presentStudents.add(index);
+    _presentStudents.sort();
+  }
+
+  void removeFromCurrentList(int index) {
+    if (ifGetAbsenteesList) {
+      removeFromAbsenteesList(index);
+    } else {
+      removeFromPresentsList(index);
+    }
+    notifyListeners();
+  }
+
   String getRollsFromDesiredList() {
     final List<int> desiredList =
         _ifGetAbsenteesList ? _absentStudents : _presentStudents;
@@ -65,7 +86,7 @@ class StudentListProvider with ChangeNotifier {
   }
 
   saveStudentDataToDB(Student student, {required String boxName}) async {
-    var box = await Hive.openBox<Student>(boxName);
+    final box = await Hive.openBox<Student>(boxName);
     box.add(student);
     loadStudentRecord();
     notifyListeners();
@@ -76,14 +97,14 @@ class StudentListProvider with ChangeNotifier {
     required String boxName,
     required int index,
   }) async {
-    var box = await Hive.openBox<Student>(boxName);
+    final box = await Hive.openBox<Student>(boxName);
     box.putAt(index, student);
     loadStudentRecord();
     notifyListeners();
   }
 
   deleteStudentDataFromDB(int index, {required String boxName}) async {
-    var box = await Hive.openBox<Student>(boxName);
+    final box = await Hive.openBox<Student>(boxName);
     box.deleteAt(index);
     loadStudentRecord();
     notifyListeners();
