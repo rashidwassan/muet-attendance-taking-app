@@ -59,7 +59,8 @@ class _ReportPageState extends State<ReportPage> {
                       (absenteeCount == 0)
                           ? 'All Students Present!'
                           : '$absenteeCount student(s) absent today!',
-                      style: const TextStyle(color: Colors.white),
+                      style: const TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 24,
@@ -88,7 +89,7 @@ class _ReportPageState extends State<ReportPage> {
                               Text(
                                 date,
                                 style: const TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 13,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white70,
                                 ),
@@ -165,7 +166,8 @@ class _ReportPageState extends State<ReportPage> {
               padding: EdgeInsets.symmetric(vertical: 12),
               child: Text(
                 'OR',
-                style: TextStyle(color: Colors.white54),
+                style: TextStyle(
+                    color: Colors.white54, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(

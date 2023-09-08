@@ -60,10 +60,10 @@ class DesiredStudentRollNumbersDisplay extends StatelessWidget {
                               ? 'Remove from absentees list'
                               : "Remove from present students' list",
                       onDeleted: () {},
-                      deleteIcon: Icon(
+                      deleteIcon: const Icon(
                         Icons.close,
                         size: 15,
-                        color: Colors.grey.shade700,
+                        color: Colors.black87,
                       ),
                       visualDensity: VisualDensity.compact,
                       backgroundColor:
